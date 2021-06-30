@@ -611,7 +611,7 @@ ip6_input(struct pbuf *p, struct netif *inp)
     else if (mld6_lookfor_group(inp, ip6_current_dest_addr())) {
       netif = inp;
     }
-#else /* LWIP_IPV6_MLD */
+#endif /* LWIP_IPV6_MLD */
     else if (ip6_addr_issolicitednode(ip6_current_dest_addr())) {
       u8_t i;
       /* Filter solicited node packets when MLD is not enabled
@@ -627,7 +627,6 @@ ip6_input(struct pbuf *p, struct netif *inp)
         }
       }
     }
-#endif /* LWIP_IPV6_MLD */
     else {
       netif = NULL;
     }
